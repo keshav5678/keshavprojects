@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% block title %}word giver{% endblock %}
+{% block head %}
+<style>
+    input,textarea,button {
+        padding: 10px; 
+        display: block;
+    }
+    body {
+        padding: 45px;
+        margin: 0;
+    }
+</style>
+<script type="text/javascript" charset="utf-8">
+    var socket = io();
+    let word;
+    let clue;
+    socket.on('connect', function() {
+        socket.emit('my event', {data: 'I\'m connected!'});
+    });
+    function appendMessage(user, message) {
+        let html = `<p><b>${user}:</b> ${message}</p>`;
+        document.getElementById("guesses").innerHTML += html; 
+    }
+    socket.on('message', (data) => {
+        user = data["user"];
+        message = data["message"];
+
+        appendMessage(user, message);
+    });
+    function sendWord() {
+        if (!word) {
+            word = document.getElementById("word").value;
+            socket.emit("sendWord", word);
+        } else {
+            alert("you can only give a word after someone has won")
+        }
+    }    
+    function addClue() {
+        clue = document.getElementById("clue").value;
+        socket.emit("sendClue", clue);
+    }   
+    socket.on("winner", (user) => {
+        alert(`winner is: ${user}`);
+        word = ""
+    });
+</script>
+{% endblock %}
+{% block content %}
+<h1>Room code: {{ session["room"] }}</h1>
+<section>
+    <input type="text" id="word" placeholder="enter word...">
+    <button type="submit" onclick="sendWord()">give word</button>
+    <br><br>
+    <textarea id="clue" cols="30" rows="2" placeholder="enter clue"></textarea>
+    <button type="submit" onclick="addClue()">add clue</button>
+</section>
+<h2>Guesses</h2>
+<section id="guesses" style="height:50vh;overflow-y:scroll;"></section>
+{% endblock %}

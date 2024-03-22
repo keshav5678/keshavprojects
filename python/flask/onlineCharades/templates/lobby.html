@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}Lobby{% endblock %}
+{% block head %}
+<style>
+    input {
+        padding: 10px; 
+        display: block;
+    }
+    body {
+        padding: 40px;
+    }
+</style>
+{% endblock %}
+{% block content %}
+<h1>Join a Game</h1>
+<form action="{{ url_for('join') }}" method="post">
+    <input type="text" name="Name" placeholder="enter your name... " required />
+    <input type="text" name="roomCode" placeholder="enter room code... " required />
+    <input type="submit" value="JOIN ROOM">
+</form>
+<hr>
+<h1>Create a Game</h1>
+<form action="{{ url_for('create') }}" method="post">
+    <input type="text" name="Name" placeholder="enter your name... " required />
+    <input type="submit" value="CREATE ROOM">
+    <i>by creating a room, you are the one who is supposed to give words</i>  
+</form>
+{% endblock %}

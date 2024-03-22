@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block title %}Lobby{% endblock %}
+{% block head %}
+<style>
+    input,button {
+        padding: 10px; 
+    }
+</style>
+<script type="text/javascript" charset="utf-8">
+    var socket = io();
+    function appendMessage(user, message) {
+        let html = `<p><b>${user}:</b> ${message}</p>`;
+        document.getElementById("guesses").innerHTML += html; 
+    }
+    socket.on('connect', function() {
+        socket.emit('my event', {data: 'I\'m connected!'});
+    });
+    socket.on('message', (data) => {
+        user = data["user"];
+        message = data["message"];
+
+        appendMessage(user, message);
+    });
+
+    socket.on('clue', (data) => {
+        document.getElementById("clue").innerHTML = data;
+    });
+    function sendGuess() {
+        let guess = document.getElementById("guess").value;
+        socket.emit("sendMessage", guess);
+    }
+    socket.on("winner", (data) => {
+        alert(`winner is: ${data["user"]}`);
+    });
+</script>
+{% endblock %}
+{% block content %}
+<h3>Clue: <span id="clue"></span></h3>
+
+<div id="guesses" style="height: 50vh; overflow-y: scroll;"></div>
+<input type="text" placeholder="guess word..." id="guess">
+<button type="submit" onclick="sendGuess()">submit</button>
+
+{% endblock %}
