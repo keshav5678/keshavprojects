@@ -16,7 +16,7 @@ output_src = ""
 resp = requests.get(api_url)
 resp_json = resp.json()
 
-# save memes in the memes folder
+# save memes in the memes folder (change the file names accordingly if you are not using windows)
 for meme in resp_json["memes"]:
     file_name = f'memes\\{ meme["url"].split("/")[-1] }'
     img_files.append(file_name)
