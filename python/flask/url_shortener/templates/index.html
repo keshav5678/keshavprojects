@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>url shortening service</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style1.css') }}">
+</head>
+<body>
+    <div class="important">
+        <h1>url shortener</h1>
+        <h2>shorten any link:</h2>
+        <form action="{{ url_for('homepage') }}" method="post">
+            <input type="text" name="nameoflink" id="nameoflink" placeholder="any name for the link..." required>
+            <input type="text" name="linktoshorten" id="linktoshorten" placeholder="a very large url..." required>
+            <input type="submit">
+        </form>
+    </div>
+</body>
+</html>
