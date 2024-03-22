@@ -1,3 +1,5 @@
+"program to add captions/subtitles to whatever video using SpeechRecognition and moviepy and a custom TUI (just to make it a little bit complicated)"
+
 import random
 import multiprocessing
 import time
