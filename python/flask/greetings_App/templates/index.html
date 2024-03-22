@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home | greeetings</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;800&display=swap');
+        *{font-family: 'Poppins', sans-serif;margin:0;}
+        .template {
+            background: white;
+            box-shadow: 0px 0px 5px rgba(0,0,0,0.5);
+            text-decoration: none;
+            color: black;
+            display: flex;
+            float: left;
+            transition: 150ms;
+            max-width: 25%;
+            margin-right: 10px;
+            border-radius: 10px;
+            height: 200px;
+            align-items: center;
+            text-align: center;
+        }
+        .template h3 {
+            margin: 0;
+        }
+        p {
+            font-weight: 400;
+        }
+        h2,h3 {
+            font-weight: 500;
+        }
+        h1 {
+            font-weight: 600;
+        }
+        body {
+            padding: 20px;
+        }
+        a {
+            display: block;
+        }
+        .template div {
+            padding-inline: 15px;
+        }
+        @media (max-width:600px) {
+            .template {
+                display: block;
+                max-width: 100%;
+                margin-right: 0;
+                margin-block: 10px;
+                height: fit-content;
+                padding: 15px;
+                text-align: left;
+            }
+            .template div {
+                padding: 0;
+            }
+            a {
+                display: block;
+                width: calc(100% - 30px);
+            }
+        }
+        h1::selection, p::selection, h3::selection, a::selection {
+            background: grey;
+            color: white;
+        }
+        br::selection {background: white;}
+    </style>
+</head>
+<body>
+    <div>
+    <a href="{{ url_for('logout') }}">logout</a>
+    </div><br>
+    <h1>Welcome!</h1>
+    <p>begin with a template</p><br>
+    <div style="display: block;">
+    <a href="/editor?theme_name=blank" class="template">
+        <div>
+            <h3>Blank template</h3>
+            <p>begin a blank template with no animated gif background.</p>
+        </div>
+    </a>
+    <a href="/editor?theme_name=new_year_greeting" class="template">
+        <div>
+            <h3>fireworks template</h3>
+            <p>fireworks template for multipurpose use.</p>
+        </div>
+    </a>
+    </div>
+    
+</body>
+</html>

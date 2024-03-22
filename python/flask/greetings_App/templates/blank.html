@@ -1,0 +1,28 @@
+{% extends "base_greeting.html" %}
+{% block title %}{{ title }}{% endblock %}
+{% block style %}
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;800&display=swap');
+    .content {
+        font-family: 'Poppins', sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-image: url("{{ filename }}");
+    }
+    h1 {
+        font-weight: 600;
+    }
+    .cover {
+        text-align: center;
+    }
+</style>
+{% endblock %}
+{% block content %}
+<div class="cover">
+    <h1>{{ title }}</h1>
+    <p>{{ greet_content }}</p>
+</div>
+
+
+{% endblock %}

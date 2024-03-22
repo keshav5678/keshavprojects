@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            box-sizing: border-box;
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+        }
+        h1 {
+            margin: 0;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-block: 2.5px;
+        }
+        input[type=submit] {
+            width: 112.5%;
+        }
+    </style>
+</head>
+<body>
+    <form action="{{ url_for('sign_up') }}" method="post">
+        <h1>SIGN UP</h1>
+        <input type="text" placeholder="username..." name="username"><br>
+        <input type="password" name="password" id="password" placeholder="password..."><br>
+        <span id="button"></span>
+    </form>
+    <script>
+        let s = '<input type="submit" value="submit">'
+        document.addEventListener('keydown', (event) => {
+            x = document.getElementById("password");
+            if (x.value.length >= 12) {
+                document.getElementById("button").innerHTML = s 
+                document.getElementById("button").style.color="black";
+            } else {
+                document.getElementById("button").style.color="red";
+                document.getElementById("button").innerHTML = "password must atleast be 12 charecters long"
+            }
+        });
+    </script>
+</body>
+</html>

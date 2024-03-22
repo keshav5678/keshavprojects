@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>  
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;800&display=swap');
+        *{font-family: 'Poppins', sans-serif;}
+        input, textarea {
+            display: block;
+            width: 450px;
+            margin-block: 5px;
+            padding: 10px;
+        }
+        textarea {
+            width: 452.5px;
+            max-width: 452.5px;
+        }
+        input[type=submit] {
+            width: 473px;
+        }
+        h1 {font-weight: 600;}
+        h2,h3 {font-weight: 500;}
+        .grey {color: grey}
+
+        body {
+            min-height: calc(100vh - 40px);
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div>
+    <p><span class="grey">editor | </span>{{ theme_name }}</p>
+    <h1>Editor</h1>
+    <form action="/editor?theme_name={{ theme_name }}" method="post">
+        <input type="text" name="title" maxlength="255" placeholder="enter title">
+        <textarea name="content" maxlength="511" placeholder="enter content"></textarea>
+        {% if theme_name == "blank" %}
+        <label for="gif_file">choose an animated <b>gif</b> file as backgound</label>
+        <input type="url" name="gif_src" placeholder="enter url of gif image">
+        <input type="submit" value="submit">
+        {% else %}
+        <input type="submit" value="submit">
+        {% endif %}
+    </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,37 @@
+{% extends "base_greeting.html" %}
+{% block title %}happy new year{% endblock %}
+{% block style %}
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+    .content {
+        font-family: 'Poppins', sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: #333;
+        color: white;
+        background-size: cover;
+        background: url("{{ url_for('static', filename='gifs/firework.gif') }}");
+        background-position: 50%;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    .cover {
+        text-align: center;
+    }
+    /*
+    h1 {
+       
+    } 
+    */
+</style>
+{% endblock %}
+{% block content %}
+<div class="cover">
+    <h1>{{ title }}</h1>
+    <p>{{ greet_content }}</p>
+    <!--<img src="{{ url_for('static', filename='gifs/firework.gif') }}" alt="">-->
+</div>
+
+
+{% endblock %}
