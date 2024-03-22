@@ -25,7 +25,7 @@ def getTrivia(category):
             "category": category
         },
         headers={
-            "X-Api-Key": "P5mzAFmTLRArX5SiMP2hdQ==Tv3ChdEQ6EYrltG8"
+            "X-Api-Key": "YOUR API KEY ASSOCIATED WITH YOUR API-NINJAS ACCOUNT"
         }
     )
     return resp.json()
