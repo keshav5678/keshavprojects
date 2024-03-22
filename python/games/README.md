@@ -5,4 +5,4 @@ sadly the fonts and sounds cannot be uploaded after many attempts. you have to m
 for the font,
 - download the 'chewy' font from google fonts.
 - create a directory/folder named 'fonts'
-- save the font there with the appropriate name written in `bubble_catcher.py`
+- save the font there with the appropriate name written in `bubble_catch.py`
