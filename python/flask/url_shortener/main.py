@@ -30,12 +30,6 @@ def homepage():
         mycursor.execute(the_query, the_values)
         mydb.commit()
 
-        # displaying all of the urls stored
-        mycursor.execute("SELECT * FROM links")
-        myresult = mycursor.fetchall()
-        for eachresult in myresult:
-            print(eachresult)
-
         # returning the template index.html from the templates folder
         return render_template("index.html")
     return render_template("index.html")
