@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
+    <style>
+        body {
+            background: #111;
+            display: flex;
+            margin: 0;
+            justify-content: center;
+        }
+        .container {
+            background: white;
+            width: 300px;
+            height: 100vh;
+            margin:0;
+            padding: 0;
+        }
+        .content {
+            height: 90vh;
+            background: white;
+            width: 100%;
+        }
+        .footer {
+            text-align: center;
+        }
+        a {
+            display: block;
+            text-align: center;
+            margin-top: 2.5vh;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+    </style>
+    {% block style %}{% endblock %}
+</head>
+<body>
+    <div class="container">
+        <div class="content">
+            {% block content %}{% endblock %}
+        </div>
+        <footer>
+            <div><a href="{{ url_for('main') }}">create greetings at 127.0.0.1:5000 <!--change to url your server is running on--></a></div>
+        </footer>
+    </div>
+</body>
+</html>
