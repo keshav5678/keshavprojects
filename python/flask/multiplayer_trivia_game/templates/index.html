@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: grid;
+            place-items: center;
+            text-align: center;
+        }
+        a {
+            text-decoration: none;
+            text-align: center;
+            padding: 10px;
+            color: black;
+            border-radius: 20px;
+            transition: 500ms ease;
+        }
+        a:hover {
+            background: #f1f1f1;
+            border-radius: 5px;
+        }
+        *{font-family: sans-serif;}
+        .line-break-for-small-screens {
+            display: none;
+        }
+        @media(max-width:500px) {    
+        .line-break-for-small-screens {
+            display: unset;
+        }
+        }
+    </style>
+</head>
+<body>
+    <div>
+    <h1>Multiplayer trivia game</h1>
+    <a href="{{ url_for('join') }}">Join a room</a>
+    <br class="line-break-for-small-screens">
+    <br class="line-break-for-small-screens">
+    <a href="{{ url_for('create') }}">Create a room</a>
+    </div>
+</body>
+</html>
