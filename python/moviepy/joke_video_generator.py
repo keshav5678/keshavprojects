@@ -1,3 +1,5 @@
+# REMOVE THE WHILE LOOP AND THE CODE WITHIN IT SO THAT IT DOES NOT RUN FOREVER
+
 import pyjokes, random, pyttsx3, string, time
 from moviepy.editor import *
 from moviepy import *
