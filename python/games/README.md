@@ -1,6 +1,6 @@
 # Games
 
-sadly font and sounds cannot be uploaded after many attempts. you have to make your own sounds.
+sadly the fonts and sounds cannot be uploaded after many attempts. you have to make your own sounds.
 
 for the font,
 - download the 'chewy' font from google fonts.
