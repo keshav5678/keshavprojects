@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Room | {{ room_code }}</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js" integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA==" crossorigin="anonymous"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <style>
+        *{font-family: 'Segoe UI', Verdana, sans-serif;}
+        body {
+            display: grid;
+            height: 100vh;
+            margin: 0;
+            grid-template-columns: 2fr 1fr;
+        }
+        input {
+            width: 65%;
+            box-sizing: border-box;
+            padding: 10px;
+            margin: 0;
+        }
+        button {
+            padding: 10px;
+            margin: 0;
+            width: 32%;
+        }
+
+        #question {
+            background: purple;
+            color: white;
+            font-size: xx-large;
+            display: grid;
+            place-content: center;
+            font-weight: 600;
+            text-align: center;
+        }
+        .guesses-area {
+            overflow: scroll;
+            max-height: calc(100vh - 45px);
+        }
+        @media(max-width:700px) {
+            body {
+                grid-template-columns: 1fr;
+                grid-template-rows: 1fr 1fr;
+            }
+            .guesses-area {
+                max-height: calc(50vh - 45px);
+            }
+        }
+        p {margin-block: 0px;}
+        .guesses-area p {
+            margin: 5px;
+        }
+        #graph {
+            width: 100%;
+        }
+        .cornerInfo {
+            position:absolute; 
+            top: 0;
+            left: 0;
+            background:white;
+            border-bottom-right-radius: 5px;
+            padding: 2.5px;
+            opacity: 0.25;
+            transition: 100ms;
+        }
+        .cornerInfo:hover {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <div id="question"></div>
+    <div id="guesses">
+        <div class="input-area">
+            <input type="text" id="input" placeholder="enter your guess..." >
+            <button type="submit" onclick="sendGuess()">send</button>
+        </div>
+        <div class="guesses-area">
+        </div>
+    </div>
+    <div class="cornerInfo">
+        <p>room code: {{ room_code }}</p>
+        <button style="padding: 0;width: fit-content;" onclick="document.getElementById('myDialog').showModal()">view  analytics</button>
+    </div>
+    <dialog id="myDialog">
+        <button onclick="document.getElementById('myDialog').close()" style="width:fit-content;padding:0;line-height: 11px;">X</button>
+        <div id="graph" style="max-width: 80vw;max-height: 80vh;"></div>
+    </dialog>
+    <script>
+        var socket = io();
+        let xArray = [];
+        let yArray = [];
+        const dt = [{
+            x:xArray,
+            y:yArray,
+            type:"bar"
+        }];
+        const layout = {title:"Player Points"};
+        const input = document.getElementById("input");
+        socket.on('connect', () => {
+            socket.emit('my event');
+        });
+        function sendGuess() {
+            let v = input.value;
+            socket.emit('send message', v);
+        }
+        function prepareMessage(user, message) {
+            let e = `<p><b>${user}</b> ${message}</p>`;
+            document.querySelector(".guesses-area").innerHTML += e;
+        }
+        socket.on('message', (data) => {
+            prepareMessage(data["user"], data["message"]);
+        });
+        socket.on('join', (data) => {
+            xArray.concat(data);
+            console.log(xArray);
+            yArray.concat(0);
+            Plotly.newPlot("graph", dt, layout);
+        });
+        socket.on('win', (data) => {
+            alert(`${data} has got that right!`);
+            let i = xArray.findIndex(data["name"]);
+            yArray[i] += 1;
+            Plotly.newPlot("graph", dt, layout);
+        });
+        socket.on('question', (data) => {
+            document.getElementById("question").innerHTML = data["question"];
+        });
+    </script>
+</body>
+</html>
