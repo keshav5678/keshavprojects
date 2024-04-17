@@ -10,7 +10,7 @@ you may download these projects and make them better, they are of free use.
 - write the files again, without errors
 - if it does not work still, then I don't know (don't ask me and don't flood me with issues.)
 - And I hope all of these actually work because I tested them
-  (If you are not in windows you need to change the paths are that are referred in the code)
+  (If you are not in windows you might need to change the paths are that are referred in the code)
 
 *I also modified small portions of some programs before I uploaded them on github (I did not test the modified versions.)*
 
