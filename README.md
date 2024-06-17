@@ -1,6 +1,6 @@
 # keshavprojects
 
-welcome to keshav projects! a repository full of the best projects that i've done.
+welcome to keshav projects! a repository full of ~~bad projects that make no sense~~ the best projects that i've done.
 you may download these projects and make them better, they are of free use.
 
 **if a project does not work:**
